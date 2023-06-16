@@ -1,0 +1,16 @@
+describe('UI Control Test Suite', ()=>{
+    it('UI Control', async ()=>{
+        await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
+        await browser.maximizeWindow()
+        await expect(browser).toHaveTitleContaining('Rahul Shetty')
+        await $('#username').setValue('rahulshettyacademy')
+        const password = $("//input[@type='password']")
+        await password.setValue('learning')
+        const radioButtons = await $$(".radiotextsty")
+        radioButtons[1].click()
+        //await $('#signInBtn').click()
+        const modal = await $(".modal-body")
+        await modal.waitForDisplayed()
+        await $("#cancelBtn").click()
+    })
+})
