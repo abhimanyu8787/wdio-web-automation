@@ -10,7 +10,7 @@ describe('Ecommerce Application', ()=>{
 
     credentials.forEach(({username,password}) => {
         it('Login Fail Page', async ()=>{
-            await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
+            await browser.url("/loginpagePractise/")
             await browser.maximizeWindow()
             await loginpage.login(username, password)
             browser.waitUntil(async ()=>{await loginpage.signIn.getAttribute('value') === 'Sign In'}, {
@@ -24,7 +24,8 @@ describe('Ecommerce Application', ()=>{
 
     e2eCredentials.forEach(({products})=>{
         it.only('End 2 End Test', async()=>{
-            await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
+            await browser.url("/loginpagePractise/")
+            await browser.maximizeWindow()
             await loginpage.login('rahulshettyacademy', 'learning')
             //wait until checkout button is displayed
             await shoppage.checkout.waitForExist()
