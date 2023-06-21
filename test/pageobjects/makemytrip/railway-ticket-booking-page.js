@@ -1,3 +1,4 @@
+const trainDetails = require("../../pojos/makemytrip/train-details")
 class railwayTicketBooking{
 
     get refundOption(){
@@ -45,6 +46,21 @@ class railwayTicketBooking{
     get addressField(){
         return $('//input[@id="address_gst_info"]')
     }
+    get trainName(){
+        return $('//h3[@class="font22 latoBlack appendBottom5"]')
+    }
+    get trainNumber(){
+        return $('//span[@class="font12 lightGreyText"]')
+    }
+    get trainDepartureTime(){
+        return $('(//p[@class="appendBottom10"])[1]')
+    }
+    get trainArrivalTime(){
+        return $('(//p[@class="appendBottom10"])[2]')
+    }
+    get trainJourneyDuration(){
+        return $('(//p[@class="font12 latoBold appendBottom20"])[1]')
+    }
 
     async selectRefundOptionByIndex(targetIndex){
         this.refundOption.forEach(async (element, index) => {
@@ -84,6 +100,10 @@ class railwayTicketBooking{
             }
         });
         await this.addressField.setValue(address)
+    }
+
+    async getTrainDetailsObject(){
+        return new trainDetails(await this.trainName.getText(), await this.trainNumber.getText(), await this.trainDepartureTime.getText(), await this.trainArrivalTime.getText(), await this.trainJourneyDuration.getTex())
     }
 
 }
